@@ -14,7 +14,7 @@ import com.nicholasparks.moviedbreviews.repositories.UserRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Rollback(false)
+@Rollback(true)
 public class UserRepositoryTests {
 	
 	@Autowired
@@ -37,5 +37,6 @@ public class UserRepositoryTests {
 		User existUser = entityManager.find(User.class, savedUser.getId());
 		
 		assertThat(user.getEmail()).isEqualTo(existUser.getEmail());
+		
 	}
 }
