@@ -21,7 +21,7 @@ public class Actor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name = "actor_id")
-	private Integer actorId;
+	private Long actorId;
 	
 	private String actorFName;
 	
@@ -30,17 +30,21 @@ public class Actor {
 	@ElementCollection
 	private Set<MovieActor> movieActor = new HashSet<MovieActor>();
 
-	public Actor(Integer actorId, String actorFName, String actorLName) {
+	public Actor(Long actorId, String actorFName, String actorLName) {
 		this.actorId = actorId;
 		this.actorFName = actorFName;
 		this.actorLName = actorLName;
 	}
+	
+	public Actor() {
+		
+	}
 
-	public Integer getActorId() {
+	public Long getActorId() {
 		return actorId;
 	}
 
-	public void setActorId(Integer actorId) {
+	public void setActorId(Long actorId) {
 		this.actorId = actorId;
 	}
 

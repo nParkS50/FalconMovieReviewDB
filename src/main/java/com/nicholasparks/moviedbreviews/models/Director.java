@@ -22,29 +22,29 @@ public class Director {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name = "director_id")
-	private Integer directorId;
+	private Long directorId;
 	private String directorFName;
-	private String directorLNname;
+	private String directorLName;
 	
 	@ElementCollection
 	private Set<Movie> movie = new HashSet<Movie>();
 	
 	
-	public Director(Integer directorId, String directorFName, String directorLNname) {
+	public Director(Long directorId, String directorFName, String directorLName) {
 		this.directorId = directorId;
 		this.directorFName = directorFName;
-		this.directorLNname = directorLNname;
+		this.directorLName = directorLName;
 	}
 
 	public Director() {
 		
 	}
 
-	public Integer getDirectorId() {
+	public Long getDirectorId() {
 		return directorId;
 	}
 
-	public void setDirectorId(Integer directorId) {
+	public void setDirectorId(Long directorId) {
 		this.directorId = directorId;
 	}
 
@@ -56,12 +56,12 @@ public class Director {
 		this.directorFName = directorFName;
 	}
 
-	public String getDirectorLNname() {
-		return directorLNname;
+	public String getDirectorLName() {
+		return directorLName;
 	}
 
-	public void setDirectorLNname(String directorLNname) {
-		this.directorLNname = directorLNname;
+	public void setDirectorLName(String directorLName) {
+		this.directorLName = directorLName;
 	}
 	
 	@ManyToMany(cascade = CascadeType.ALL)
