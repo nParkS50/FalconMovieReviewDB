@@ -3,16 +3,12 @@ package com.nicholasparks.moviedbreviews.models;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,17 +19,17 @@ public class Director {
 	@Id
 	@Column(name = "director_id")
 	private Long directorId;
-	private String directorFName;
-	private String directorLName;
+	
+	@Column(nullable = false, length = 60)
+	private String directorName;
 	
 	@ElementCollection
 	private Set<Movie> movie = new HashSet<Movie>();
 	
 	
-	public Director(Long directorId, String directorFName, String directorLName) {
+	public Director(Long directorId, String directorName) {
 		this.directorId = directorId;
-		this.directorFName = directorFName;
-		this.directorLName = directorLName;
+		this.directorName = directorName;
 	}
 
 	public Director() {
@@ -48,33 +44,16 @@ public class Director {
 		this.directorId = directorId;
 	}
 
-	public String getDirectorFName() {
-		return directorFName;
+	public String getDirectorName() {
+		return directorName;
 	}
 
-	public void setDirectorFName(String directorFName) {
-		this.directorFName = directorFName;
-	}
-
-	public String getDirectorLName() {
-		return directorLName;
-	}
-
-	public void setDirectorLName(String directorLName) {
-		this.directorLName = directorLName;
+	public void setDirectorName(String directorName) {
+		this.directorName = directorName;
 	}
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "movie_director", 
-			joinColumns = @JoinColumn(name = "movie_id"), 
-			inverseJoinColumns = @JoinColumn(name = "director_id"))
-	public Set<Movie> getMovie(){
-		return movie;
+	@Override
+	public String toString() {
+		return this.directorName;
 	}
-	
-	public void addMovie(Movie movie) {
-		this.movie.add(movie);
-	}
-	
 }

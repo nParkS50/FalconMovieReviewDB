@@ -8,6 +8,6 @@ import com.nicholasparks.moviedbreviews.models.Director;
 
 public interface DirectorRepository extends JpaRepository<Director, Long> {
 	
-	List<Director> findDirectorByDirectorLName(String directorLastName);
+	List<Director> findDirectorByDirectorName(String directorName);
 
 }

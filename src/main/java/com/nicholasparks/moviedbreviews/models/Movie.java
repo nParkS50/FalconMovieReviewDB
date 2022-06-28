@@ -8,9 +8,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -32,6 +35,12 @@ public class Movie {
 	
 	@ElementCollection
 	private Set<MovieActor> movieActor = new HashSet<MovieActor>();
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "movie_director", 
+			joinColumns = @JoinColumn(name = "movie_id"), 
+			inverseJoinColumns = @JoinColumn(name = "director_id"))
 	@ElementCollection
 	private Set<Director> director = new HashSet<Director>();
 	
@@ -121,10 +130,6 @@ public class Movie {
 		this.movieActor.add(movieActor);
 	}
 	
-	@ManyToMany(mappedBy = "movie")
-	public Set<Director> getDirector() {
-		return director;
-	}
 	
 	public void addDirector(Director director) {
 		this.director.add(director);
